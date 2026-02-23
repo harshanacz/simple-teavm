@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>TeaVM WebAssembly Demo</title>
 </head>
+
 <body>
     <h1>TeaVM WebAssembly Demo</h1>
     <p>Check the browser console for output.</p>
 
-    <script src="classes.wasm.js"></script>
+    <script src="../target/wasm/classes.wasm-runtime.js?v=2"></script>
+    <script>
+        TeaVM.wasm.load("../target/wasm/classes.wasm?v=2").then(function (teavm) {
+            teavm.main();
+        }).catch(function (err) {
+            console.error("Error loading WASM: ", err);
+        });
+    </script>
 </body>
+
 </html>
