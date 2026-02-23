@@ -6,9 +6,17 @@
 
   <properties>
     <teavm.version>0.10.2</teavm.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.teavm</groupId>
+      <artifactId>teavm-classlib</artifactId>
+      <version>${teavm.version}</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.teavm</groupId>
       <artifactId>teavm-jso-apis</artifactId>
@@ -26,11 +34,13 @@
         <executions>
           <execution>
             <goals><goal>compile</goal></goals>
+            <phase>process-classes</phase>
             <configuration>
               <mainClass>com.example.Main</mainClass>
-              <targetType>WEBASSEMBLY_GC</targetType>
-              <outputDir>${project.build.directory}/wasm</outputDir>
+              <targetType>WEBASSEMBLY</targetType>
+              <targetDirectory>${project.build.directory}/wasm</targetDirectory>
               <optimizationLevel>SIMPLE</optimizationLevel>
+              <minifying>false</minifying>
             </configuration>
           </execution>
         </executions>
