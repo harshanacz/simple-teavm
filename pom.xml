@@ -1,0 +1,40 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>simple-teavm</artifactId>
+  <version>1.0</version>
+
+  <properties>
+    <teavm.version>0.10.2</teavm.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.teavm</groupId>
+      <artifactId>teavm-jso-apis</artifactId>
+      <version>${teavm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.teavm</groupId>
+        <artifactId>teavm-maven-plugin</artifactId>
+        <version>${teavm.version}</version>
+        <executions>
+          <execution>
+            <goals><goal>compile</goal></goals>
+            <configuration>
+              <mainClass>com.example.Main</mainClass>
+              <targetType>WEBASSEMBLY_GC</targetType>
+              <outputDir>${project.build.directory}/wasm</outputDir>
+              <optimizationLevel>SIMPLE</optimizationLevel>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
